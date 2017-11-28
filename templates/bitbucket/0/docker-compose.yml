@@ -1,13 +1,13 @@
 bitbucket:
   image: blacklabelops/bitbucket:5.5.0
   environment:
-     - BITBUCKET_PROXY_NAME=${proxy_name}
-     - BITBUCKET_PROXY_PORT=${proxy_port}
-     - BITBUCKET_SCHEME=${proxy_scheme}
-     - BITBUCKET_CONTEXT_PATH=${context_path}
-     - JVM_MINIMUM_MEMORY=${min}
-     - JVM_MAXIMUM_MEMORY=${max}
+    - BITBUCKET_PROXY_NAME=${proxy_name}
+    - BITBUCKET_PROXY_PORT=${proxy_port}
+    - BITBUCKET_PROXY_SCHEME=${proxy_scheme}
+    - BITBUCKET_CONTEXT_PATH=${context_path}
+    - JVM_MINIMUM_MEMORY=${min}
+    - JVM_MAXIMUM_MEMORY=${max}
   external_links:
-      - ${database_link}:database
+    - ${database_link}:database
   volumes:
-    - {$home}:/var/atlassian/bitbucket
+    - ${home}:/var/atlassian/bitbucket
