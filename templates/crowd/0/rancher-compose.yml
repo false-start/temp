@@ -1,4 +1,5 @@
-.catalog:
+version: "2"
+catalog:
   name: "Crowd"
   version: "3.0.1"
   description: "Users can come from anywhere: Active Directory, LDAP, Crowd itself, or any mix thereof. Control permissions to all your applications in one place – Atlassian, Subversion, Google Apps, or your own apps."
@@ -13,7 +14,7 @@
     - variable: "proxy_name"
       label: "Proxy name"
       description: |
-        When behind a proxy, specify the name through which clients will connect to Crowd. For example: ci.mycompany.com
+        When behind a proxy, specify the name through which clients will connect to Crowd. For example: crowd.mycompany.com
       type: "string"
       required: false
     - variable: "proxy_port"
@@ -32,38 +33,45 @@
         - https
       default: http
       required: false
-    - variable: "heap_size"
-      label: "Heap size"
+    - variable: "min"
+      label: "Minimum JVM Memory Size"
       description: |
         The size of the heap the JVM can allocate
       type: "string"
-      default: "1024m"
+      default: "2g"
       required: true
-    - variable: "plugin_timeout"
-      label: "Plugin Timeout"
+    - variable: "max"
+      label: "Maximum JVM Memory Size"
       description: |
-        Time in seconds JIRA waits for plugins to load
-      type: "int"
-      default: "300"
-      required: true
-    - variable: "jvm_args"
-      label: "JVM arguments"
-      description: |
-        Additional arguments to pass to the JVM
+        The size of the heap the JVM can allocate
       type: "string"
-      required: false
+      default: "3g"
+      required: true
     - variable: "database_link"
       label: "Database"
       description: |
         Service link to the database. This will be mapped to the container as 'database'
       type: "service"
-      required: false
-    - variable: "home"
-      label: "Crowd Volume Name"
-      description: |
-        The volume name shared to store Crowd's configuration
-      type: "string"
       required: true
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server"
+      label: "VOLUME Driver"
+      required: true
+      default: "local"
+      type: enum
+      options: # List of options if using type of `enum`
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
+    - variable: host_label
+      label: "Host with Label to put postgres on"
+      description: |
+        Host label to use as postgres 'value' tag.
+        Example: 'app_server=true'
+      required: false
+      default: ""
+      type: "string"
 crowd:
   scale: 1
   health_check:

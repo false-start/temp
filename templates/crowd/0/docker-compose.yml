@@ -1,12 +1,37 @@
-crowd:
-  image: blacklabelops/crowd:3.0.1
-  environment:
-    - CATALINIA_OPTS=-Xms${heap_size} -Xmx${heap_size} ${jvm_args}
-    - CROWD_PROXY_PORT=${proxy_port}
-    - CROWD_PROXY_NAME=${proxy_name}
-    - CROWD_PROXY_SCHEME=${proxy_scheme}
-    - CROWD_CONTEXT_ROOT=${context_path}
-  external_links:
-    - ${database_link}:database
-  volumes:
-    - ${home}:/var/atlassian/bamboo
+version: '2'
+services:
+  crowd-data:
+    image: busybox
+    labels:
+      io.rancher.container.start_once: true
+    {{- if ne .Values.host_label ""}}
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+    {{- end}}
+    volumes:
+      - crowdData:/var/atlassian/crowd
+  crowd:
+    image: blacklabelops/crowd:3.0.1
+    tty: true
+    stdin_open: true
+    labels:
+      io.rancher.sidekicks: crowd-data
+    {{- if ne .Values.host_label ""}}
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+    {{- end}}
+    environment:
+      - CROWD_PROXY_PORT=${proxy_port}
+      - CROWD_PROXY_NAME=${proxy_name}
+      - CROWD_PROXY_SCHEME=${proxy_scheme}
+      - CROWD_CONTEXT_ROOT=${context_path}
+      - JVM_MINIMUM_MEMORY=${min}
+      - JVM_MAXIMUM_MEMORY=${max}
+    external_links:
+      - ${database_link}:database
+    volumes:
+      - crowdData:/var/atlassian/crowd
+    volumes_from:
+      - crowd-data
+volumes:
+  crowdData:
+    driver: ${VOLUME_DRIVER}
+    per_container: true
