@@ -1,0 +1,5 @@
+name: Bamboo (One43)
+description: |
+  Bamboo is a continuous integration and deployment tool that ties automated builds, tests and releases together in a single workflow.
+version: 6.2.2
+category: Versioning

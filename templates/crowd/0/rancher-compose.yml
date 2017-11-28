@@ -1,0 +1,76 @@
+.catalog:
+  name: "Crowd"
+  version: "3.0.1"
+  description: "Users can come from anywhere: Active Directory, LDAP, Crowd itself, or any mix thereof. Control permissions to all your applications in one place – Atlassian, Subversion, Google Apps, or your own apps."
+  questions:
+    - variable: "context_path"
+      label: "Context path"
+      description: |
+        The context path under which Crowd will be available
+      type: "string"
+      default: "/crowd"
+      required: true
+    - variable: "proxy_name"
+      label: "Proxy name"
+      description: |
+        When behind a proxy, specify the name through which clients will connect to Crowd. For example: ci.mycompany.com
+      type: "string"
+      required: false
+    - variable: "proxy_port"
+      label: "Proxy port"
+      description: |
+        When behind a proxy, specify the port through which clients will connect to Crowd
+      type: "int"
+      required: false
+    - variable: "proxy_scheme"
+      label: "Proxy scheme"
+      description: |
+        When behind a proxy, specify the protocol clients will use to connect to Crowd
+      type: "enum"
+      options:
+        - http
+        - https
+      default: http
+      required: false
+    - variable: "heap_size"
+      label: "Heap size"
+      description: |
+        The size of the heap the JVM can allocate
+      type: "string"
+      default: "1024m"
+      required: true
+    - variable: "plugin_timeout"
+      label: "Plugin Timeout"
+      description: |
+        Time in seconds JIRA waits for plugins to load
+      type: "int"
+      default: "300"
+      required: true
+    - variable: "jvm_args"
+      label: "JVM arguments"
+      description: |
+        Additional arguments to pass to the JVM
+      type: "string"
+      required: false
+    - variable: "database_link"
+      label: "Database"
+      description: |
+        Service link to the database. This will be mapped to the container as 'database'
+      type: "service"
+      required: false
+    - variable: "home"
+      label: "Crowd Volume Name"
+      description: |
+        The volume name shared to store Crowd's configuration
+      type: "string"
+      required: true
+crowd:
+  scale: 1
+  health_check:
+    port: 8095
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

@@ -1,0 +1,83 @@
+.catalog:
+  name: "Bamboo"
+  version: "6.2.2"
+  description: "Bamboo is a continuous integration and deployment tool that ties automated builds, tests and releases together in a single workflow."
+  questions:
+    - variable: "context_path"
+      label: "Context path"
+      description: |
+        The context path under which Bamboo will be available
+      type: "string"
+      default: "/"
+      required: true
+    - variable: "proxy_name"
+      label: "Proxy name"
+      description: |
+        When behind a proxy, specify the name through which clients will connect to Bamboo. For example: ci.mycompany.com
+      type: "string"
+      required: false
+    - variable: "proxy_port"
+      label: "Proxy port"
+      description: |
+        When behind a proxy, specify the port through which clients will connect to Bamboo
+      type: "int"
+      required: false
+    - variable: "proxy_scheme"
+      label: "Proxy scheme"
+      description: |
+        When behind a proxy, specify the protocol clients will use to connect to Bamboo
+      type: "enum"
+      options:
+        - http
+        - https
+      default: http
+      required: false
+    - variable: "min"
+      label: "Minimum JVM Memory Size"
+      description: |
+        The size of the heap the JVM can allocate
+      type: "string"
+      default: "2g"
+      required: true
+    - variable: "max"
+      label: "Maximum JVM Memory Size"
+      description: |
+        The size of the heap the JVM can allocate
+      type: "string"
+      default: "3g"
+      required: true
+    - variable: "plugin_timeout"
+      label: "Plugin Timeout"
+      description: |
+        Time in seconds JIRA waits for plugins to load
+      type: "int"
+      default: "300"
+      required: true
+    - variable: "jvm_args"
+      label: "JVM arguments"
+      description: |
+        Additional arguments to pass to the JVM
+      type: "string"
+      required: false
+    - variable: "database_link"
+      label: "Database"
+      description: |
+        Service link to the database. This will be mapped to the container as 'database'
+      type: "service"
+      required: false
+    - variable: "home"
+      label: "Bamboo Volume Name"
+      description: |
+        The volume name shared to store Bamboo's configuration
+      type: "string"
+      required: true
+bamboo:
+  scale: 1
+  health_check:
+    port: 8090
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

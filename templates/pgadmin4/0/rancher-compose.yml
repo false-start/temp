@@ -1,0 +1,41 @@
+.catalog:
+  name: "pgAdmin 4"
+  version: "2.0"
+  description: "Open Source management tool for Postgres"
+  questions:
+    - variable: "user"
+      label: "Default User"
+      type: "string"
+      required: true
+      default: "admin@one43.co"
+    - variable: "password"
+      label: "Default Password"
+      type: "password"
+      required: true
+    - variable: "database_link"
+      label: "Database"
+      description: |
+        Service link to the database. This will be mapped to the container as 'database'
+      type: "service"
+      required: false
+    - variable: "debug"
+      label: "Activate Debug Mode"
+      default: false
+      type: "boolean"
+    - variable: "jira_home"
+      label: "pgAdmin Volume Name"
+      default: "pgadmin"
+      description: |
+        The volume name shared to store Jira's configuration
+      type: "string"
+      required: true
+pgadmin:
+  scale: 1
+  health_check:
+    port: 5050
+    interval: 2000
+    initializing_timeout: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

@@ -1,0 +1,12 @@
+jira:
+  image: blacklabelops/crowd:3.0.1
+  environment:
+    - CATALINIA_OPTS=-Xms${heap_size} -Xmx${heap_size} ${jvm_args}
+    - CROWD_PROXY_PORT=${proxy_port}
+    - CROWD_PROXY_NAME=${proxy_name}
+    - CROWD_PROXY_SCHEME=${proxy_scheme}
+    - CROWD_CONTEXT_ROOT=${context_path}
+  external_links:
+    - ${database_link}:database
+  volumes:
+    - ${home}:/var/atlassian/bamboo

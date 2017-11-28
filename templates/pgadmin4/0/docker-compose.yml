@@ -1,0 +1,10 @@
+pgadmin:
+  image: fenglc/pgadmin4:2.0
+  environment:
+    - DEFAULT_USER=${user}
+    - DEFAULT_PASSWORD=${password}
+    - DEBUG=${debug}
+  external_links:
+    - ${database_link}:database
+  volumes:
+    - ${pgadmin_home}:/pgadmin/config
