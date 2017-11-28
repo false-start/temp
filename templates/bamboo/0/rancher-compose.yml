@@ -1,4 +1,4 @@
-.catalog:
+catalog:
   name: "Bamboo"
   version: "6.2.2"
   description: "Bamboo is a continuous integration and deployment tool that ties automated builds, tests and releases together in a single workflow."

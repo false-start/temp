@@ -1,4 +1,4 @@
-jira:
+crowd:
   image: blacklabelops/crowd:3.0.1
   environment:
     - CATALINIA_OPTS=-Xms${heap_size} -Xmx${heap_size} ${jvm_args}

@@ -1,5 +1,5 @@
-name: Bamboo (One43)
+name: Confluence (One43)
 description: |
-  Bamboo is a continuous integration and deployment tool that ties automated builds, tests and releases together in a single workflow.
-version: 6.2.2
-category: Versioning
+  Confluence is content collaboration software that changes how modern teams work.
+version: 6.3.4
+category: Collaboration
