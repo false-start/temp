@@ -1,3 +1,4 @@
+version: "2"
 catalog:
   name: "Confluence"
   version: "6.3.4"
@@ -65,12 +66,25 @@ catalog:
         Service link to the database. This will be mapped to the container as 'database'
       type: "service"
       required: false
-    - variable: "home"
-      label: "Confluence Volume Name"
-      description: |
-        The volume name shared to store Confluence's configuration
-      type: "string"
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server"
+      label: "VOLUME Driver"
       required: true
+      default: "local"
+      type: enum
+      options: # List of options if using type of `enum`
+        - local
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
+    - variable: host_label
+      label: "Host with Label to put postgres on"
+      description: |
+        Host label to use as postgres 'value' tag.
+        Example: 'app_server=true'
+      required: false
+      default: ""
+      type: "string"
 confluence:
   scale: 1
   health_check:
