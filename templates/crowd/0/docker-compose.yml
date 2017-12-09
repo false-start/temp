@@ -18,15 +18,15 @@ services:
     {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
     {{- end}}
-      traefik.enable: true
-      traefik.protocol: {{$proxy_scheme}}
-      traefik.domain: {{$proxy_name}}
+      traefik.enable: ${enable_lb}
+      traefik.protocol: ${proxy_scheme}
+      traefik.domain: ${proxy_name}
     {{- if ne .Values.proxy_scheme "https" }}
       traefik.acme: true
     {{- else -}}
       traefik.acme: false
     {{- end -}}
-      traefik.port: {{$proxy_port}}
+      traefik.port: ${proxy_port}
     environment:
       - CROWD_PROXY_PORT=${proxy_port}
       - CROWD_PROXY_NAME=${proxy_name}
