@@ -34,10 +34,9 @@ catalog:
       default: http
       required: false
     - variable: "enable_lb"
-      label: "Show in System Load Balancer?"
+      label: "Enable in Global Load Balancer?"
       type: "boolean"
       default: true
-      required: true
     - variable: "min"
       label: "Minimum JVM Memory Size"
       description: |
