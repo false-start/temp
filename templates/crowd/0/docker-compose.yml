@@ -18,14 +18,7 @@ services:
     {{- if ne .Values.host_label ""}}
       io.rancher.scheduler.affinity:host_label: ${host_label}
     {{- end}}
-      traefik.enable: ${enable_lb}
-      traefik.protocol: ${proxy_scheme}
-      traefik.domain: ${proxy_name}
-    {{- if ne .Values.proxy_scheme "https"}}
-      traefik.acme: false
-    {{- else}}
-      traefik.acme: true
-    {{- end}}
+      SERVICE_TAGS: traefik.frontend.rule=Host:${proxy_name}
     environment:
       - CROWD_PROXY_PORT=${proxy_port}
       - CROWD_PROXY_NAME=${proxy_name}
