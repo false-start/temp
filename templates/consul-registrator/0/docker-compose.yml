@@ -7,7 +7,7 @@ services:
       io.rancher.container.dns: true
       io.rancher.scheduler.global: true
       io.rancher.container.hostname_override: container_name
-    links:
+    external_links:
       - ${service}:consul
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
