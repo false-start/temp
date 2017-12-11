@@ -9,7 +9,6 @@ catalog:
       label: "Consul Service Link"
       type: "service"
       required: true
-      default: "consul"
     - variable: "prefix"
       label: "Service Prefix"
       type: "string"

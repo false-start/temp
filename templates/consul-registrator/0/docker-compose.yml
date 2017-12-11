@@ -10,7 +10,7 @@ services:
     external_links:
       - ${service}:consul
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       SVC_PREFIX: ${prefix}
       LOCAL_CONSUL_AGENT: "http://consul:8500"
