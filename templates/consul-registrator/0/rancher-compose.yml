@@ -1,0 +1,16 @@
+version: "2"
+catalog:
+  name: "Consul Registrator (CNI)"
+  description: "Consul Agent with Registrator Auto Configuration"
+  version: "1.0.0"
+  uuid: consul-registrator-1
+  questions:
+    - variable: "consul_agent"
+      label: "Consul Server URL"
+      type: "string"
+      default: "http://consul:8500"
+      required: true
+    - variable: "prefix"
+      label: "Service Prefix"
+      type: "string"
+      required: false

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  consul-registrator:
+    image: fmeriot/rancher-registrator
+    labels:
+      io.rancher.container.network: host
+      io.rancher.container.dns: true
+      io.rancher.scheduler.global: true
+      io.rancher.container.hostname_override: container_name
+    links:
+      - consul
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    environment:
+      SVC_PREFIX: ${prefix}
+      LOCAL_CONSUL_AGENT: ${consul_agent}
