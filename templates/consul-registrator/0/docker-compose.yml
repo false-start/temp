@@ -8,9 +8,9 @@ services:
       io.rancher.scheduler.global: true
       io.rancher.container.hostname_override: container_name
     links:
-      - consul
+      - ${service}:consul
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
     environment:
       SVC_PREFIX: ${prefix}
-      LOCAL_CONSUL_AGENT: ${consul_agent}
+      LOCAL_CONSUL_AGENT: "http://consul:8500"

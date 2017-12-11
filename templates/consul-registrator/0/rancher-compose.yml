@@ -5,11 +5,11 @@ catalog:
   version: "1.0.0"
   uuid: consul-registrator-1
   questions:
-    - variable: "consul_agent"
-      label: "Consul Server URL"
-      type: "string"
-      default: "http://consul:8500"
+    - variable: "service"
+      label: "Consul Service Link"
+      type: "service"
       required: true
+      default: "consul"
     - variable: "prefix"
       label: "Service Prefix"
       type: "string"
