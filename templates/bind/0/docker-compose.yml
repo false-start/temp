@@ -1,9 +1,12 @@
 bind:
   image: digitallumberjack/docker-bind9:latest
+  labels:
+    io.rancher.scheduler.affinity:host_label: ${host_label}
   ports:
      - ${PORT}:53/tcp
      - ${PORT}:53/udp
   environment:
+   - BIND9_IP=${IP}
    - BIND9_ROOTDOMAIN=${ROOT_DOMAIN}
    - BIND9_KEYNAME=${KEYNAME}
    - BIND9_ALGORITHM=${ALGORITHM}

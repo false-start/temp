@@ -4,12 +4,21 @@
   description: "Domain Name Server powered by Bind9"
   minimum_rancher_version: v0.44.0
   questions:
+    - variable: IP
+      label: "Bind Listen IP"
+      type: "string"
     - variable: PORT
       label: "Bind Port"
       description: "Bind9 port to expose on host. Will be used to bind both TCP and UDP"
       type: "string"
       default: 53
       required: true
+    - variable: "host_label"
+      description: "Host label where to run traefik service."
+      label: "Host label:"
+      required: true
+      default: "dns=true"
+      type: "string"
     - variable: ROOT_DOMAIN
       label: "The root domain to manage in bind9"
       description: "This root domain will be managed by the Bind9 server. Updates and axfr requests will be made on this domain"
