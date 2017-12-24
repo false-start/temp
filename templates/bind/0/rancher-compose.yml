@@ -7,6 +7,7 @@
     - BIND_IP
       label: "Bind Listen IP"
       type: "string"
+      default: "10.10.12.23"
     - BIND_PORT
       label: "Bind Port"
       description: "Bind9 port to expose on host. Will be used to bind both TCP and UDP"
