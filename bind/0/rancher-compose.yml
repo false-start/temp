@@ -1,5 +1,5 @@
 .catalog:
-  name: "Bind9 DNS"
+  name: "Bind DNS"
   version: "latest"
   description: "Domain Name Server powered by Bind9"
   minimum_rancher_version: v0.44.0
