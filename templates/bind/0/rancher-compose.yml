@@ -4,11 +4,11 @@
   description: "Domain Name Server powered by Bind9"
   minimum_rancher_version: v0.44.0
   questions:
-    - BIND_IP
+    - variable: BIND_IP
       label: "Bind Listen IP"
       type: "string"
       default: "10.10.12.23"
-    - BIND_PORT
+    - variable: BIND_PORT
       label: "Bind Port"
       description: "Bind9 port to expose on host. Will be used to bind both TCP and UDP"
       type: "string"
@@ -20,22 +20,22 @@
       required: true
       default: "dns=true"
       type: "string"
-    - BIND_ROOT_DOMAIN
+    - variable: BIND_ROOT_DOMAIN
       label: "The root domain to manage in bind9"
       description: "This root domain will be managed by the Bind9 server. Updates and axfr requests will be made on this domain"
       type: "string"
       required: true
-    - BIND_KEYNAME
+    - variable: BIND_KEYNAME
       label: "Bind9 TSIG Keyname"
       description: "The TSIG keyname"
       type: "string"
       required: true
-    - BIND_KEY
+    - variable: BIND_KEY
       label: "Bind9 TSIG Key (base64 encoded)"
       description: "The TSIG key. Must be base64 encoded"
       type: "string"
       required: true
-    - BIND_ALGORITHM
+    - variable: BIND_ALGORITHM
       label: "Bind Key Algorithm"
       required: true
       default: "hmac-md5"
@@ -45,27 +45,27 @@
         - hmac-sha1
         - hmac-sha256
         - hmac-sha512
-    - BIND_FORWARDERS
+    - variable: BIND_FORWARDERS
       label: "Bind9 dns forwarders"
       description: "The DNS forwarders"
       type: "string"
       default: 8.8.8.8;8.8.4.4;
       required: true
-    - BIND_IPV4_ONLY
+    - variable: BIND_IPV4_ONLY
       label: "Disable IPv6?"
       type: "boolean"
       default: false
-    - BIND_RECURSION_IP
+    - variable: BIND_RECURSION_IP
       label: "Bind Recursion Accept IP"
       type: "string"
       default: 127.0.0.1
-    - BIND_QUERY_CACHE_IP
+    - variable: BIND_QUERY_CACHE_IP
       label: "Query Cache Accept IP"
       description: "IP to allow in allow-query-cache"
       type: "string"
       default: 127.0.0.1
       required: true
-    - BIND_STATIC_ENTRIES
+    - variable: BIND_STATIC_ENTRIES
       label: "Static Entries"
       description: "multiline static entries for your zone"
       type: "multiline"
