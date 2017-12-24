@@ -4,37 +4,37 @@
   description: "Domain Name Server powered by Bind9"
   minimum_rancher_version: v0.44.0
   questions:
-    - variable: IP
+    - BIND_IP
       label: "Bind Listen IP"
       type: "string"
-    - variable: PORT
+    - BIND_PORT
       label: "Bind Port"
       description: "Bind9 port to expose on host. Will be used to bind both TCP and UDP"
       type: "string"
       default: 53
       required: true
-    - variable: "host_label"
+    - variable: BIND_HOST_LABEL
       description: "Host label where to run traefik service."
       label: "Host label:"
       required: true
       default: "dns=true"
       type: "string"
-    - variable: ROOT_DOMAIN
+    - BIND_ROOT_DOMAIN
       label: "The root domain to manage in bind9"
       description: "This root domain will be managed by the Bind9 server. Updates and axfr requests will be made on this domain"
       type: "string"
       required: true
-    - variable: KEYNAME
+    - BIND_KEYNAME
       label: "Bind9 TSIG Keyname"
       description: "The TSIG keyname"
       type: "string"
       required: true
-    - variable: KEY
+    - BIND_KEY
       label: "Bind9 TSIG Key (base64 encoded)"
       description: "The TSIG key. Must be base64 encoded"
       type: "string"
       required: true
-    - variable: ALGORITHM
+    - BIND_ALGORITHM
       label: "Bind Key Algorithm"
       required: true
       default: "hmac-md5"
@@ -44,27 +44,27 @@
         - hmac-sha1
         - hmac-sha256
         - hmac-sha512
-    - variable: FORWARDERS
+    - BIND_FORWARDERS
       label: "Bind9 dns forwarders"
       description: "The DNS forwarders"
       type: "string"
       default: 8.8.8.8;8.8.4.4;
       required: true
-    - variable: IPV4_ONLY
+    - BIND_IPV4_ONLY
       label: "Disable IPv6?"
       type: "boolean"
       default: false
-    - variable: RECURSION_IP
+    - BIND_RECURSION_IP
       label: "Bind Recursion Accept IP"
       type: "string"
       default: 127.0.0.1
-    - variable: QUERY_CACHE_IP
+    - BIND_QUERY_CACHE_IP
       label: "Query Cache Accept IP"
       description: "IP to allow in allow-query-cache"
       type: "string"
       default: 127.0.0.1
       required: true
-    - variable: STATIC_ENTRIES
+    - BIND_STATIC_ENTRIES
       label: "Static Entries"
       description: "multiline static entries for your zone"
       type: "multiline"
@@ -72,7 +72,7 @@
 bind:
   scale: 1
   health_check:
-    port: ${PORT}
+    port: ${BIND_PORT}
     interval: 2000
     initializing_timeout: 20000
     unhealthy_threshold: 3
