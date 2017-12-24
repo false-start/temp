@@ -1,5 +1,5 @@
-name: pgAdmin 4
+name: Bind DNS
 description: |
-  Open Source management tool for Postgres
-version: 2.0
-category: Applications
+  Bind9 DNS server, compatible with the "DNS Update (RFC2136)"
+version: latest
+category: External DNS
