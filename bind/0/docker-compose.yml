@@ -4,13 +4,12 @@ bind:
      - ${BIND9_PORT}:53/tcp
      - ${BIND9_PORT}:53/udp
   environment:
-   - BIND9_IP=${ip}
-   - BIND9_ROOTDOMAIN=${domain}
-   - BIND9_KEYNAME=${key_name}
-   - BIND9_ALGORITHM=${key_algorithm}
-   - BIND9_KEY=${key}
-   - BIND9_FORWARDERS=${forwarders}
-   - BIND9_IPV4ONLY=${disable_ipv6}
-   - BIND9_QUERY_CACHE_ACCEPT=${query_cache}
-   - BIND9_RECURSION_ACCEPT=${recursion}
-   - BIND9_STATIC_ENTRIES=${static_entries}
+   - BIND9_ROOTDOMAIN=${ROOT_DOMAIN}
+   - BIND9_KEYNAME=${KEYNAME}
+   - BIND9_ALGORITHM=${ALGORITHM}
+   - BIND9_KEY=${KEY}
+   - BIND9_FORWARDERS=${FORWARDERS}
+   - BIND9_IPV4ONLY=${IPV4_ONLY}
+   - BIND9_QUERY_CACHE_ACCEPT=${QUERY_CACHE_IP}
+   - BIND9_RECURSION_ACCEPT=${RECURSION_IP}
+   - BIND9_STATIC_ENTRIES=${STATIC_ENTRIES}
