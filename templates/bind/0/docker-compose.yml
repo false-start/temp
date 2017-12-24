@@ -1,8 +1,8 @@
 bind:
   image: digitallumberjack/docker-bind9:latest
   ports:
-     - ${BIND9_PORT}:53/tcp
-     - ${BIND9_PORT}:53/udp
+     - ${PORT}:53/tcp
+     - ${PORT}:53/udp
   environment:
    - BIND9_ROOTDOMAIN=${ROOT_DOMAIN}
    - BIND9_KEYNAME=${KEYNAME}
