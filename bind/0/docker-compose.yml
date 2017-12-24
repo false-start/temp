@@ -1,0 +1,16 @@
+bind:
+  image: digitallumberjack/docker-bind9:latest
+  ports:
+     - ${BIND9_PORT}:53/tcp
+     - ${BIND9_PORT}:53/udp
+  environment:
+   - BIND9_IP=${ip}
+   - BIND9_ROOTDOMAIN=${domain}
+   - BIND9_KEYNAME=${key_name}
+   - BIND9_ALGORITHM=${key_algorithm}
+   - BIND9_KEY=${key}
+   - BIND9_FORWARDERS=${forwarders}
+   - BIND9_IPV4ONLY=${disable_ipv6}
+   - BIND9_QUERY_CACHE_ACCEPT=${query_cache}
+   - BIND9_RECURSION_ACCEPT=${recursion}
+   - BIND9_STATIC_ENTRIES=${static_entries}

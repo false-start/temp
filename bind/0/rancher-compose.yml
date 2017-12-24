@@ -1,0 +1,72 @@
+.catalog:
+  name: "Bind9 DNS"
+  version: "latest"
+  description: "Domain Name Server powered by Bind9"
+  minimum_rancher_version: v0.44.0
+  questions:
+    - variable: PORT
+      label: "Bind Port"
+      description: "Bind9 port to expose on host. Will be used to bind both TCP and UDP"
+      type: "string"
+      default: 53
+      required: true
+    - variable: ROOT_DOMAIN
+      label: "The root domain to manage in bind9"
+      description: "This root domain will be managed by the Bind9 server. Updates and axfr requests will be made on this domain"
+      type: "string"
+      required: true
+    - variable: KEYNAME
+      label: "Bind9 TSIG Keyname"
+      description: "The TSIG keyname"
+      type: "string"
+      required: true
+    - variable: KEY
+      label: "Bind9 TSIG Key (base64 encoded)"
+      description: "The TSIG key. Must be base64 encoded"
+      type: "string"
+      required: true
+    - variable: ALGORITHM
+      label: "Bind Key Algorithm"
+      required: true
+      default: "hmac-md5"
+      type: enum
+      options: # List of options if using type of `enum`
+        - hmac-md5
+        - hmac-sha1
+        - hmac-sha256
+        - hmac-sha512
+    - variable: FORWARDERS
+      label: "Bind9 dns forwarders"
+      description: "The DNS forwarders"
+      type: "string"
+      default: 8.8.8.8;8.8.4.4;
+      required: true
+    - variable: IPV4_ONLY
+      label: "Disable IPv6?"
+      type: "boolean"
+      default: false
+    - variable: RECURSION_IP
+      label: "Bind Recursion Accept IP"
+      type: "string"
+      default: 127.0.0.1
+    - variable: QUERY_CACHE_IP
+      label: "Query Cache Accept IP"
+      description: "IP to allow in allow-query-cache"
+      type: "string"
+      default: 127.0.0.1
+      required: true
+    - variable: STATIC_ENTRIES
+      label: "Static Entries"
+      description: "multiline static entries for your zone"
+      type: "multiline"
+      required: false
+bind9:
+  scale: 1
+  health_check:
+    port: ${BIND9_PORT}
+    interval: 2000
+    initializing_timeout: 20000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 2000

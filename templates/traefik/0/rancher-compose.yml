@@ -22,7 +22,7 @@ catalog:
     - variable: "consul_endpoint"
       label: "Consul Endpoint:"
       required: false
-      default: "consul:8500"
+      default: "http://consul:8500"
       type: "string"
     - variable: "consul_link"
       label: "Consul Instance"
