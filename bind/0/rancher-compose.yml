@@ -60,10 +60,10 @@
       description: "multiline static entries for your zone"
       type: "multiline"
       required: false
-bind9:
+bind:
   scale: 1
   health_check:
-    port: ${BIND9_PORT}
+    port: ${PORT}
     interval: 2000
     initializing_timeout: 20000
     unhealthy_threshold: 3
